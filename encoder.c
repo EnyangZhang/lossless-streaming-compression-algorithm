@@ -102,7 +102,7 @@ void lzw_encode(char* text, Dictionary* dict) {
 
         // Remove the last appended character (since current sequence is not found)
         current[strlen(current) - 1] = '\0';
-        // 新增行：重新赋值next为当前文本字符
+        // New line: Reassign next to the current text character
         next = text[i];
         // Get the code of the valid existing sequence
         code = get_seq_code(dict, current);
@@ -111,8 +111,10 @@ void lzw_encode(char* text, Dictionary* dict) {
         // Insert the new sequence into the dictionary
         insert_seq(dict, current);
         
-        // Print the code of the valid sequence (newly added line)
-        printf("%d\n", code);
+        // Original print statement (commented out for preservation)
+        // printf("%d\n", code);
+        // Modified print statement: Output codes separated by ", " in one line
+        printf("%d, ", code);
     }
 }
 
@@ -124,7 +126,7 @@ int main() {
     // Print the initialized dictionary (shows #, A-Z with codes 0-26)
     print_dictionary(&dict);
     
-    // 以下行被删减：printf("%d\n", get_seq_code(&dict, "B"));
+    // The following line was removed: printf("%d\n", get_seq_code(&dict, "B"));
     // Call LZW encode function with target text "TOBEORNOTTOBEORTOBEORNOT"
     lzw_encode("TOBEORNOTTOBEORTOBEORNOT", &dict);
     
